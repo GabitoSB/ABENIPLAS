@@ -1,23 +1,18 @@
-import logo from './logo.svg';
-import './App.css';
+import React, { useState } from 'react';
+import 'bootstrap/dist/css/bootstrap.min.css';
+import BolsaList from './BolsaList';
+import BolsaForm from './BolsaForm';
 
 function App() {
+  const [recargar, setRecargar] = useState(false);
+
+  const recargarDatos = () => setRecargar(!recargar);
+
   return (
     <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+      <h1 className="text-center mt-4">Inventario de Bolsas – ABENIPLAS</h1>
+      <BolsaForm onRegistroExitoso={recargarDatos} />
+      <BolsaList key={recargar} />
     </div>
   );
 }
